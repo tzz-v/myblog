@@ -6,31 +6,22 @@
     <description>Recent content in Categories on MyBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jul 2018 00:00:00 +0800</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>category-2</title>
-      <link>https://tzz-v.github.io/myblog/categories/category-2/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      <title>前端</title>
+      <link>https://tzz-v.github.io/myblog/categories/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://tzz-v.github.io/myblog/categories/category-2/</guid>
+      <guid>https://tzz-v.github.io/myblog/categories/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>category-3</title>
-      <link>https://tzz-v.github.io/myblog/categories/category-3/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      <title>数据结构与算法</title>
+      <link>https://tzz-v.github.io/myblog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 07 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://tzz-v.github.io/myblog/categories/category-3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Theme preview</title>
-      <link>https://tzz-v.github.io/myblog/categories/theme-preview/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
-      
-      <guid>https://tzz-v.github.io/myblog/categories/theme-preview/</guid>
+      <guid>https://tzz-v.github.io/myblog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>react-router v6 - MyBlog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="肆码难椎" /><meta name="description" content="前言 之前一直负责老项目的迭代，而且很少关注 router 相关的代码，直到上个月公司开了一个新项目，当我着手开始配置路由时突然发现，嗯？Switch 标签咋" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.106.0 with theme even" />
+
+
+<link rel="canonical" href="https://tzz-v.github.io/myblog/post/react-router-v6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/myblog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/myblog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/myblog/favicon-16x16.png">
+<link rel="manifest" href="/myblog/manifest.json">
+<link rel="mask-icon" href="/myblog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/myblog/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="react-router v6" />
+<meta property="og:description" content="前言 之前一直负责老项目的迭代，而且很少关注 router 相关的代码，直到上个月公司开了一个新项目，当我着手开始配置路由时突然发现，嗯？Switch 标签咋" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tzz-v.github.io/myblog/post/react-router-v6/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-10-13T16:54:24+00:00" />
+<meta property="article:modified_time" content="2022-10-13T16:54:24+00:00" />
+
+<meta itemprop="name" content="react-router v6">
+<meta itemprop="description" content="前言 之前一直负责老项目的迭代，而且很少关注 router 相关的代码，直到上个月公司开了一个新项目，当我着手开始配置路由时突然发现，嗯？Switch 标签咋"><meta itemprop="datePublished" content="2022-10-13T16:54:24+00:00" />
+<meta itemprop="dateModified" content="2022-10-13T16:54:24+00:00" />
+<meta itemprop="wordCount" content="1474">
+<meta itemprop="keywords" content="react,学习笔记," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="react-router v6"/>
+<meta name="twitter:description" content="前言 之前一直负责老项目的迭代，而且很少关注 router 相关的代码，直到上个月公司开了一个新项目，当我着手开始配置路由时突然发现，嗯？Switch 标签咋"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">tian</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/myblog/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/myblog/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/myblog/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/myblog/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/myblog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">tian</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/myblog/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">react-router v6</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-10-13 </span>
+        <div class="post-category">
+            <a href="/myblog/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+          <span class="more-meta"> 约 1474 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#前言">前言</a></li>
+            <li><a href="#正文">正文</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="前言">前言</h3>
+<p>之前一直负责老项目的迭代，而且很少关注 router 相关的代码，直到上个月公司开了一个新项目，当我着手开始配置路由时突然发现，嗯？Switch 标签咋没了？Route 里的 component 属性咋也没了。意识到不妙的我赶紧去翻了翻 react router 的文档，发现 react router 早就在 21 年底就偷偷升级到了 v6 且变更极大（嗯 这是一个悲伤的故事，现在甚至已经更新到了 6.4.1）</p>
+<p>之前的老项目的包版本是 5.2 的，要升级的话成本有点高，也懒得搞，就那样吧。但新项目肯定不能将就啊。那就整呗</p>
+<h3 id="正文">正文</h3>
+<p>首先先说一下 react-router 和 react-router-dom 的区别，react-router 实现了路由的核心功能，react-router-dom 则是基于 react-router，又加了在浏览器运行环境下的一些功能，比如把 Link 组件渲染成一个 a 标签，再比如 HashRouter 会使用 window.location.hash 和 hashChange 事件构建路由。一般在项目中只需要引入 react-router-dom 包即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm install react-router-dom
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="browserrouter">BrowserRouter</h4>
+<p>新项目使用浏览器路由即 BrowserRouter，要想在项目中使用 React Router，需要 App 组件嵌套进 BrowserRouter 组件中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ReactDOM.createRoot(document.getElementById(&#34;root&#34;) as HTMLElement).render(
+</span></span><span class="line"><span class="cl">  &lt;React.StrictMode&gt;
+</span></span><span class="line"><span class="cl">    &lt;BrowserRouter&gt;
+</span></span><span class="line"><span class="cl">      &lt;App /&gt;
+</span></span><span class="line"><span class="cl">    &lt;/BrowserRouter&gt;
+</span></span><span class="line"><span class="cl">  &lt;/React.StrictMode&gt;
+</span></span><span class="line"><span class="cl">);
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="routes-和-route">Routes 和 Route</h4>
+<p>我们使用 Route 组件来定义路由，并使用 Routes 包裹。</p>
+<p>Route 组件接收两个 props：</p>
+<ul>
+<li>path?: string | 页面 url</li>
+<li>element?： React.ReactNode |当前 url 需要加载的元素</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;Routes&gt;
+</span></span><span class="line"><span class="cl">  &lt;Route path=&#34;/&#34; element={&lt;Home /&gt;} /&gt;
+</span></span><span class="line"><span class="cl">  &lt;Route path=&#34;/teams/:id&#34; element={&lt;Teams /&gt;} /&gt;
+</span></span><span class="line"><span class="cl">  &lt;Route path=&#34;/teams/new&#34; element={&lt;NewTeams /&gt;} /&gt;
+</span></span><span class="line"><span class="cl">  &lt;Route path=&#34;*&#34; element={&lt;PageError /&gt;} /&gt;
+</span></span><span class="line"><span class="cl">&lt;/Routes&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;Switch&gt;
+</span></span><span class="line"><span class="cl">  &lt;Route path=&#34;/teams/:id&#34; component={Teams} /&gt;
+</span></span><span class="line"><span class="cl">  &lt;Route path=&#34;/teams/new&#34; component={NewTeams} /&gt;
+</span></span><span class="line"><span class="cl">&lt;/Switch&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>V6 的 Route 组件不在要求我们按一定的顺序来定义路由,在旧版本中，当多个路由匹配一个模糊的 url 时，我们必须以某种方式对路由进行排序，v6 版本则会替我们选择最具体的匹配。/teams/new 将匹配这两个路由，但只会渲染 NewTeams 组件。</p>
+<p>支持的格式：</p>
+<ul>
+<li>/groups</li>
+<li>/groups/admin</li>
+<li>/users/:id</li>
+<li>/users/:id/messages</li>
+<li>/files/*</li>
+<li>/files/:id/*</li>
+</ul>
+<h4 id="嵌套路由">嵌套路由</h4>
+<p>react-router V6 支持路由的嵌套，允许父路由控制子路由的渲染，</p>
+<p>提供了一个渲染出口组件 Outlet，当匹配到子路由的时候会渲染在 Outlet 组件所在的位置，父路由此时仍然存在。</p>
+<p>支持多级嵌套</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">const src = () =&gt; {
+</span></span><span class="line"><span class="cl">  return (
+</span></span><span class="line"><span class="cl">    &lt;&gt;
+</span></span><span class="line"><span class="cl">      &lt;Routes&gt;
+</span></span><span class="line"><span class="cl">        &lt;Route path=&#34;/&#34; element={&lt;Home /&gt;} /&gt;
+</span></span><span class="line"><span class="cl">        &lt;Route path=&#34;/list&#34; element={&lt;List /&gt;}&gt;
+</span></span><span class="line"><span class="cl">          &lt;Route path=&#34;Detail/:id&#34; element={&lt;Detail /&gt;} /&gt;
+</span></span><span class="line"><span class="cl">        &lt;/Route&gt;
+</span></span><span class="line"><span class="cl">      &lt;/Routes&gt;
+</span></span><span class="line"><span class="cl">    &lt;/&gt;
+</span></span><span class="line"><span class="cl">  )
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const List = () =&gt; {
+</span></span><span class="line"><span class="cl">  const navigate = useNavigate();
+</span></span><span class="line"><span class="cl">  return (
+</span></span><span class="line"><span class="cl">    &lt;&gt;
+</span></span><span class="line"><span class="cl">      &lt;div className=&#34;list&#34;&gt;
+</span></span><span class="line"><span class="cl">        &lt;Button
+</span></span><span class="line"><span class="cl">          onClick={() =&gt; {
+</span></span><span class="line"><span class="cl">            navigate(&#39;/list/detail/1&#39;);
+</span></span><span class="line"><span class="cl">          }}
+</span></span><span class="line"><span class="cl">        &gt;
+</span></span><span class="line"><span class="cl">          detail1
+</span></span><span class="line"><span class="cl">        &lt;/Button&gt;
+</span></span><span class="line"><span class="cl">        &lt;Button
+</span></span><span class="line"><span class="cl">          onClick={() =&gt; {
+</span></span><span class="line"><span class="cl">            navigate(&#39;/list/detail/2&#39;);
+</span></span><span class="line"><span class="cl">          }}
+</span></span><span class="line"><span class="cl">        &gt;
+</span></span><span class="line"><span class="cl">          detail2
+</span></span><span class="line"><span class="cl">        &lt;/Button&gt;
+</span></span><span class="line"><span class="cl">        // react-router提供了Outlet组件用来占位置
+</span></span><span class="line"><span class="cl">        &lt;Outlet /&gt;
+</span></span><span class="line"><span class="cl">      &lt;/div&gt;
+</span></span><span class="line"><span class="cl">    &lt;/&gt;
+</span></span><span class="line"><span class="cl">  );
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="查询参数">查询参数</h4>
+<p>/mysql?mysql_group_id=mysql-test&amp;mysql_instance_id=mysql-asfasfew</p>
+<p>react-router V6 提供了 useSearchParams Hook，它是基于浏览器内置的 URLSearchParams 构造函数进行的封装。</p>
+<p>useSearchParams 类似 useState，返回一个数组，第一个元素是一个 Map，可以通过其 get 方法获取查询字符串中的值，第二个元素是一个函数，用来更新 url 中的查询字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">import { useSearchParams } from &#39;react-router-dom&#39;;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const [searchParams, setSearchParams] = useSearchParams();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const groupId = searchParams.get(&#39;mysql_group_id&#39;)
+</span></span><span class="line"><span class="cl">const instanceId = searchParams.get(&#39;mysql_instance_id&#39;)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const updateOrder = (sort) =&gt; {
+</span></span><span class="line"><span class="cl">  setSearchParams({ key: value })
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="编程式配置路由">编程式配置路由</h4>
+<p>react-router V6 还提供了 useRoutes Hook，使我们可以通过写一个配置对象的方式来配置路由，不需要在自行拼接 jsx.</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a9c3dd7664664973b0661b29800bb814~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">const routerConfig = [
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">    path: &#34;/&#34;,
+</span></span><span class="line"><span class="cl">    key: &#34;home&#34;,
+</span></span><span class="line"><span class="cl">    label: &#34;common.nav.menu.home&#34;,
+</span></span><span class="line"><span class="cl">    icon: &lt;HomeOutlined /&gt;,
+</span></span><span class="line"><span class="cl">    element: &lt;Home /&gt;,
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">    key: &#34;authManageWrapper&#34;,
+</span></span><span class="line"><span class="cl">    label: &#34;common.nav.menu.authManage&#34;,
+</span></span><span class="line"><span class="cl">    icon: &lt;SolutionOutlined /&gt;,
+</span></span><span class="line"><span class="cl">    children: [
+</span></span><span class="line"><span class="cl">      {
+</span></span><span class="line"><span class="cl">        path: &#34;/auth/list&#34;,
+</span></span><span class="line"><span class="cl">        key: &#34;authList&#34;,
+</span></span><span class="line"><span class="cl">        label: &#34;common.nav.menu.authList&#34;,
+</span></span><span class="line"><span class="cl">        element: &lt;AuthList /&gt;,
+</span></span><span class="line"><span class="cl">      },
+</span></span><span class="line"><span class="cl">      {
+</span></span><span class="line"><span class="cl">        path: &#34;/auth/add&#34;,
+</span></span><span class="line"><span class="cl">        key: &#34;addAuth&#34;,
+</span></span><span class="line"><span class="cl">        label: &#34;common.nav.menu.addAuth&#34;,
+</span></span><span class="line"><span class="cl">        element: &lt;AddAuth /&gt;,
+</span></span><span class="line"><span class="cl">      },
+</span></span><span class="line"><span class="cl">    ],
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">  {
+</span></span><span class="line"><span class="cl">    path: &#34;*&#34;,
+</span></span><span class="line"><span class="cl">    hideInMenu: true,
+</span></span><span class="line"><span class="cl">    key: &#34;null&#34;,
+</span></span><span class="line"><span class="cl">    element: &lt;Navigate to=&#34;/&#34; /&gt;,
+</span></span><span class="line"><span class="cl">  },
+</span></span><span class="line"><span class="cl">]
+</span></span><span class="line"><span class="cl">return (
+</span></span><span class="line"><span class="cl">  &lt;&gt;
+</span></span><span class="line"><span class="cl">    {useRoutes(routerConfig)}
+</span></span><span class="line"><span class="cl">  &lt;/&gt;
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 antd 的 4.20 版本+中，他的 Menu 导航组件也支持这种写法，可以维护一份 routerConfig，对其扩充一些属性，就能同时再 Menu 组件中使用。</p>
+<h4 id="heading"></h4>
+<h4 id="其他">其他</h4>
+<ul>
+<li>新增 useNavigate Hook 代替 useHistory Hook</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let navigate = useNavigate();
+</span></span><span class="line"><span class="cl">&lt;button
+</span></span><span class="line"><span class="cl">  onClick={() =&gt; {
+</span></span><span class="line"><span class="cl">    navigate(&#34;/invoices&#34; + location.search);
+</span></span><span class="line"><span class="cl">  }}
+</span></span><span class="line"><span class="cl">&gt;
+</span></span><span class="line"><span class="cl">  jump
+</span></span><span class="line"><span class="cl">&lt;/button&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以在各个地方渲染多组路由：经常有一些需求让我们在某个 state 为 true 时展示组件 A，为 false 时展示组件 B，这个时候可以尝试在组件内写一个嵌套路由。</li>
+</ul>
+<h4 id="总结">总结：</h4>
+<ul>
+<li>定义路由时 Routes 组件和 Route 组件搭配使用，且可以在不同地方定义多组。Route 组件的属性也发生了变更。</li>
+<li>新增了 Outlet 组件，支持路由的嵌套，使用起来可以更加的灵活。</li>
+<li>新增了一个可以查询和更新 url 参数的 hook useSearchParams。</li>
+<li>提供了 useRoutes Hook， 支持使用 js 对象的形式来定义路由。</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">肆码难椎</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-10-13
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/myblog/tags/react/">react</a>
+          <a href="/myblog/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/myblog/post/ahooks%E4%B8%AD%E7%9A%84%E6%A0%B8%E5%BF%83hook-userequest%E4%B8%8A/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ahooks中的核心hook-useRequest（上）</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/myblog/post/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+            <span class="next-text nav-default">js高程学习笔记</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="sunshine-tzz@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tzz-v" class="iconfont icon-github" title="github"></a>
+  <a href="https://tzz-v.github.io/myblog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>肆码难椎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/myblog/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

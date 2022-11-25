@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>js高程学习笔记 - MyBlog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="肆码难椎" /><meta name="description" content="红宝书（学习笔记） 三、语言基础 null 和 undefined（3.4） null: 表示一个空对象指针。这也是 typeof null 会返回‘object’的原因。 undefine" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.106.0 with theme even" />
+
+
+<link rel="canonical" href="https://tzz-v.github.io/myblog/post/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/myblog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/myblog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/myblog/favicon-16x16.png">
+<link rel="manifest" href="/myblog/manifest.json">
+<link rel="mask-icon" href="/myblog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/myblog/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="js高程学习笔记" />
+<meta property="og:description" content="红宝书（学习笔记） 三、语言基础 null 和 undefined（3.4） null: 表示一个空对象指针。这也是 typeof null 会返回‘object’的原因。 undefine" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tzz-v.github.io/myblog/post/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-01-10T10:28:59+00:00" />
+<meta property="article:modified_time" content="2022-07-20T00:00:00+00:00" />
+
+<meta itemprop="name" content="js高程学习笔记">
+<meta itemprop="description" content="红宝书（学习笔记） 三、语言基础 null 和 undefined（3.4） null: 表示一个空对象指针。这也是 typeof null 会返回‘object’的原因。 undefine"><meta itemprop="datePublished" content="2022-01-10T10:28:59+00:00" />
+<meta itemprop="dateModified" content="2022-07-20T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1827">
+<meta itemprop="keywords" content="javascript,学习笔记," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="js高程学习笔记"/>
+<meta name="twitter:description" content="红宝书（学习笔记） 三、语言基础 null 和 undefined（3.4） null: 表示一个空对象指针。这也是 typeof null 会返回‘object’的原因。 undefine"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">tian</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/myblog/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/myblog/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/myblog/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/myblog/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/myblog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">tian</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/myblog/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">js高程学习笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-01-10 </span>
+        <div class="post-category">
+            <a href="/myblog/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+          <span class="more-meta"> 约 1827 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#红宝书学习笔记">红宝书（学习笔记）</a>
+      <ul>
+        <li><a href="#三语言基础">三、语言基础</a>
+          <ul>
+            <li><a href="#null-和-undefined34">null 和 undefined（3.4）</a></li>
+            <li><a href="#symbol-类型34">Symbol 类型（3.4）</a></li>
+          </ul>
+        </li>
+        <li><a href="#四变量作用域与内存">四、变量、作用域与内存</a>
+          <ul>
+            <li><a href="#原始值与引用值41">原始值与引用值（4.1）</a></li>
+          </ul>
+        </li>
+        <li><a href="#六集合引用类型">六、集合引用类型</a>
+          <ul>
+            <li><a href="#arrayform-621">array.form() (6.2.1)</a></li>
+          </ul>
+        </li>
+        <li><a href="#八对象类与面向对象编程">八、对象、类与面向对象编程</a>
+          <ul>
+            <li><a href="#理解对象81">理解对象（8.1）</a></li>
+            <li><a href="#对象标识及相等判定815">对象标识及相等判定（8.1.5）</a></li>
+            <li><a href="#判断对象中是否包含某个属性">判断对象中是否包含某个属性</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="红宝书学习笔记">红宝书（学习笔记）</h1>
+<h2 id="三语言基础">三、语言基础</h2>
+<h3 id="null-和-undefined34">null 和 undefined（3.4）</h3>
+<ul>
+<li>
+<p>null: 表示一个空对象指针。这也是 typeof null 会返回‘object’的原因。</p>
+</li>
+<li>
+<p>undefined： undefined 值由 null 派生而来，所以表面相等（null == undefined // true）</p>
+<p>当声明了变量但未赋值的时候，就相当于给变量赋值了 undefined；</p>
+<p>当访问对象变量中不存在的属性时会返回 undefined；</p>
+</li>
+<li>
+<p>区别：</p>
+<ul>
+<li>在定义一个将要保存对象值得变量来说，可以使用 null 来初始化</li>
+</ul>
+</li>
+<li>
+<p>但不建议给某个变量设置 undefined 值。字面值 undefined 主要用于比较</p>
+<ul>
+<li><code>（undefined可以用来**读**，null可以用来**读写**）</code></li>
+</ul>
+</li>
+<li>
+<p>Number(null) return 0; Number(undefined) return NaN</p>
+</li>
+</ul>
+<h3 id="symbol-类型34">Symbol 类型（3.4）</h3>
+<p>之前没仔细了解过，原来 Symbol 还有几个 api</p>
+<p>如果想重用符号实例，可以通过 Symbol.for()方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span> <span class="c1">//false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span> <span class="c1">//true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 注：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">e</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">f</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">);</span> <span class="c1">//false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>还可以对其进行查询</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">keyFor</span><span class="p">(</span><span class="nx">g</span><span class="p">));</span> <span class="c1">// &#39;a&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">keyFor</span><span class="p">(</span><span class="nx">h</span><span class="p">));</span> <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">keyFor</span><span class="p">(</span><span class="mi">123</span><span class="p">));</span> <span class="c1">// TypeError 123 is not a symbol
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>当 Symbol 符号作为对象的键的时候，是不会被 Object.keys 或 entries 等相关 api 遍历出来的,</p>
+<p>可以通过 Object.getOwnPropertySymbols()等来拿到对象的 symbol 类型键值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">[</span><span class="nx">a</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;123&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">[</span><span class="nx">b</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;456&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">obj</span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;789&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// {c: &#39;789&#39;, Symbol(a): &#39;123&#39;, Symbol(b): &#39;456&#39;}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// [&#39;c&#39;];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// [&#39;789&#39;];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// [&#39;c&#39;];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertySymbols</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// [Symbol(a), Symbol(b)];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyDescriptors</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// [Symbol(a), Symbol(b)];
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 或者通过Reflect.ownKeys()拿到两个类型的键
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Reflect</span><span class="p">.</span><span class="nx">ownKeys</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// [&#39;c&#39;, Symbol(a), Symbol(b)];
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="四变量作用域与内存">四、变量、作用域与内存</h2>
+<h3 id="原始值与引用值41">原始值与引用值（4.1）</h3>
+<p>变量可以包含两种类型的数据，原始值和引用值，</p>
+<p>原始值就是最简单的数据（string， number，symbol，undefined，null, boolean）</p>
+<p>引用值则是由多个值构成的对象。</p>
+<p>typeof 可以确认值的原始值类型，instanceof 可以用于确认值的引用类型</p>
+<h2 id="六集合引用类型">六、集合引用类型</h2>
+<h3 id="arrayform-621">array.form() (6.2.1)</h3>
+<p>Array.form()除了能将类数组结构转换为数组实例外，还能进行类似 map 操作</p>
+<p>Array.from()方法有一个可选参数 mapFn，让你可以在最后生成的数组上再执行一次 map 方法后再返回。也就是说` Array.from(obj, mapFn, thisArg) 就相当于 Array.from(obj).map(mapFn, thisArg)</p>
+<h2 id="八对象类与面向对象编程">八、对象、类与面向对象编程</h2>
+<h3 id="理解对象81">理解对象（8.1）</h3>
+<p>对象： 一组属性的无序集合，他的每个属性或方法都有一个名称来标识；
+对象的属性有两种类型，数据属性和访问器属性，ECMA 使用了一些内部特性来描述属性的特征</p>
+<ul>
+<li>
+<p>数据属性：数据属性包含一个保存数据值的位置用来读写，他有四个特性</p>
+<ul>
+<li>[[Configurable]]: 表示当前属性是否可以通过 delete 删除以及是否可以把它改为访问器属性，默认为 true</li>
+<li>[[Enumberable]]: 表示属性是否可以通过 for-in 循环返回，默认为 true</li>
+<li>[[Writable]]: 表示属性值是否支持修改，默认为 true</li>
+<li>[[Value]]: 包含属性实际的值，默认为 undefined。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let obj = {
+</span></span><span class="line"><span class="cl">  name: &#39;Xiaoming&#39;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">// 这就意味着obj这个对象的name属性的特性[[Value]]会被设置为&#39;Xiaoming&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//可以通过Object.defineProperty()方法来修改属性的默认特性
+</span></span><span class="line"><span class="cl">// Object.defineProperty(objName, attrName, descriptor)
+</span></span><span class="line"><span class="cl">// objName: 要修改的对象名称；
+</span></span><span class="line"><span class="cl">// attrName: 要修改的对象的属性名称；
+</span></span><span class="line"><span class="cl">// descriptor: 要修改的描述符对象(Configurable、Enumberable、Writable、Value)。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const person = {}
+</span></span><span class="line"><span class="cl">// 设置只读
+</span></span><span class="line"><span class="cl">Object.defineProperty(person, &#39;name&#39;, {
+</span></span><span class="line"><span class="cl">  writable: false,
+</span></span><span class="line"><span class="cl">  value: &#39;Xiaoming&#39;,
+</span></span><span class="line"><span class="cl">})
+</span></span><span class="line"><span class="cl">console.log(person.name) // Xiaoming;
+</span></span><span class="line"><span class="cl">person.name = &#39;Xiaohong&#39;
+</span></span><span class="line"><span class="cl">console.log(person.name) // Xiaoming;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 设置不可删除
+</span></span><span class="line"><span class="cl">Object.defineProperty(person, &#39;name&#39;, {
+</span></span><span class="line"><span class="cl">  configurable: false,
+</span></span><span class="line"><span class="cl">})
+</span></span><span class="line"><span class="cl">delete person.name;
+</span></span><span class="line"><span class="cl">console.log(person.name) // Xiaoming;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>访问器属性: 访问器属性不包含数据值，相反，他们包含一个获取函数（getter）和设置函数（setter），在读取访问器属性时，会调用获取函数，在写入访问器属性时会调用设置函数。同样他也有 4 个特性来描述他的行为:</p>
+<ul>
+<li>[[Configurable]]: 表示当前属性是否可以通过 delete 删除以及是否可以把它改为访问器属性，默认为 true</li>
+<li>[[Enumberable]]: 表示属性是否可以通过 for-in 循环返回，默认为 true</li>
+<li></li>
+<li>【注】访问器属性是不能直接定义的，必须使用 Object.defineProperty()</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">const person {
+</span></span><span class="line"><span class="cl">  age_: 28,
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">Object.definedProperty(person, &#39;age&#39;, {
+</span></span><span class="line"><span class="cl">  get() {
+</span></span><span class="line"><span class="cl">    return this.age_ + 1;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">  set(newValue) {
+</span></span><span class="line"><span class="cl">    this.age_ = newValue * 2;
+</span></span><span class="line"><span class="cl">  }
+</span></span><span class="line"><span class="cl">})
+</span></span><span class="line"><span class="cl">console.log(person.age_) // 28;
+</span></span><span class="line"><span class="cl">console.log(person.age) // 29;
+</span></span><span class="line"><span class="cl">person.age = 10;
+</span></span><span class="line"><span class="cl">console.log(person.age_) // 20;
+</span></span><span class="line"><span class="cl">console.log(person.age) // 21;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 获取函数和设置函数不一定都要定义，只设置获取函数意味着属性是只读的，只设置设置函数的属性意味着属性不能进行读取
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>可以通过 Object.getOwnPropertyDescriptor(objName, attrName?: string)方法来取得指定属性的属性描述符</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">const person = {name: &#39;Xiaoming&#39;}
+</span></span><span class="line"><span class="cl">console.log(Object.getOwnDefinePropertyDescriptor(person, &#39;name&#39;))
+</span></span><span class="line"><span class="cl">// {
+</span></span><span class="line"><span class="cl">//  configurable: true,
+</span></span><span class="line"><span class="cl">//  enumerable: true,
+</span></span><span class="line"><span class="cl">//  writable: true,
+</span></span><span class="line"><span class="cl">//  value: &#39;Xiaoming&#39;,
+</span></span><span class="line"><span class="cl">//}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="对象标识及相等判定815">对象标识及相等判定（8.1.5）</h3>
+<ul>
+<li>除了能通过 isNaN（）来判断变量是否是 NaN，还可以通过 Object.is();</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  console.log(NaN === NaN) // false;
+</span></span><span class="line"><span class="cl">  console.log(isNaN(NaN)) // true;
+</span></span><span class="line"><span class="cl">  console.log(Object.is(NaN, NaN)) // true;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="判断对象中是否包含某个属性">判断对象中是否包含某个属性</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// 判断对象实例或原型是否包含某个实例
+</span></span><span class="line"><span class="cl">const obj = {name: &#39;xiaoMing&#39;};
+</span></span><span class="line"><span class="cl">console.log(&#39;name&#39; in obj) // true;
+</span></span><span class="line"><span class="cl">console.log(&#39;age&#39; in obj) // false;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//判断对象实例是否包含某个实例
+</span></span><span class="line"><span class="cl">function Person(){};
+</span></span><span class="line"><span class="cl">Person.prototype.name = &#39;xiaoMing&#39;;
+</span></span><span class="line"><span class="cl">let son = new Person();
+</span></span><span class="line"><span class="cl">console.log(son.name) // &#39;xiaoMing;
+</span></span><span class="line"><span class="cl">console.log(son.hasOwnProperty(&#39;name&#39;)) // false;
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">肆码难椎</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-07-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/myblog/tags/javascript/">javascript</a>
+          <a href="/myblog/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/myblog/post/react-router-v6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">react-router v6</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/myblog/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BA%94%E6%8E%92%E5%BA%8F/">
+            <span class="next-text nav-default">数据结构（五）排序</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="sunshine-tzz@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tzz-v" class="iconfont icon-github" title="github"></a>
+  <a href="https://tzz-v.github.io/myblog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>肆码难椎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/myblog/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
