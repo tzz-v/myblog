@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on MyBlog</title>
+    <link>https://tzz-v.github.io/myblog/tags/docker/</link>
+    <description>Recent content in docker on MyBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker初识</title>
+      <link>https://tzz-v.github.io/myblog/post/docker%E5%88%9D%E8%AF%86/</link>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://tzz-v.github.io/myblog/post/docker%E5%88%9D%E8%AF%86/</guid>
+      <description>前言 在我这可以，在你那怎么就跑不起来了？ 在以前，项目开发完成后，测试/运维需要从头到尾搭建环境、调试。这样的话经常出现在开发的口中，不过，随</description>
+    </item>
+    
+  </channel>
+</rss>

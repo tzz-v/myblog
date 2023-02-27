@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Docker初识 - MyBlog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="肆码难椎" /><meta name="description" content="前言 在我这可以，在你那怎么就跑不起来了？ 在以前，项目开发完成后，测试/运维需要从头到尾搭建环境、调试。这样的话经常出现在开发的口中，不过，随" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.106.0 with theme even" />
+
+
+<link rel="canonical" href="https://tzz-v.github.io/myblog/post/docker%E5%88%9D%E8%AF%86/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/myblog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/myblog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/myblog/favicon-16x16.png">
+<link rel="manifest" href="/myblog/manifest.json">
+<link rel="mask-icon" href="/myblog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/myblog/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Docker初识" />
+<meta property="og:description" content="前言 在我这可以，在你那怎么就跑不起来了？ 在以前，项目开发完成后，测试/运维需要从头到尾搭建环境、调试。这样的话经常出现在开发的口中，不过，随" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tzz-v.github.io/myblog/post/docker%E5%88%9D%E8%AF%86/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-23T00:00:00+00:00" />
+
+<meta itemprop="name" content="Docker初识">
+<meta itemprop="description" content="前言 在我这可以，在你那怎么就跑不起来了？ 在以前，项目开发完成后，测试/运维需要从头到尾搭建环境、调试。这样的话经常出现在开发的口中，不过，随"><meta itemprop="datePublished" content="2023-02-23T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-23T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3040">
+<meta itemprop="keywords" content="docker," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker初识"/>
+<meta name="twitter:description" content="前言 在我这可以，在你那怎么就跑不起来了？ 在以前，项目开发完成后，测试/运维需要从头到尾搭建环境、调试。这样的话经常出现在开发的口中，不过，随"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">tian</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/myblog/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/myblog/post/">
+        <li class="mobile-menu-item">时间线</li>
+      </a><a href="/myblog/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/myblog/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/myblog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">tian</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/myblog/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/post/">时间线</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/myblog/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Docker初识</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-02-23 </span>
+        <div class="post-category">
+            <a href="/myblog/categories/%E5%89%8D%E7%AB%AF/"> 前端 </a>
+            </div>
+          <span class="more-meta"> 约 3040 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#docker-简介">docker 简介</a></li>
+    <li><a href="#docker-三要素">docker 三要素</a></li>
+    <li><a href="#docker-的基本使用">docker 的基本使用</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#根据镜像启动一个容器">根据镜像启动一个容器</a></li>
+            <li><a href="#查看已启动的容器">查看已启动的容器</a></li>
+            <li><a href="#停止启动重启删除一个已启动的容器">停止/启动/重启/删除一个已启动的容器</a></li>
+            <li><a href="#开启容器的交互">开启容器的交互</a></li>
+            <li><a href="#其他">其他</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#使用-dockerfile-构建自己的镜像">使用 Dockerfile 构建自己的镜像</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用docker-build根据dockerfile构建镜像">使用<code>docker build</code>根据<code>Dockerfile</code>构建镜像</a></li>
+            <li><a href="#运行构建好的镜像">运行构建好的镜像</a></li>
+            <li><a href="#状态管理">状态管理</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="前言">前言</h1>
+<p>在我这可以，在你那怎么就跑不起来了？
+在以前，项目开发完成后，测试/运维需要从头到尾搭建环境、调试。这样的话经常出现在开发的口中，不过，随着技术的不断发展，在容器技术诞生后，这个问题就可以轻松的解决了。容器技术就像一个打包工具，使我们可以以与管理应用程序相同的方式管理基础架构。部署操作都命令化，集中成一个脚本就可以完成原来复杂的部署过程。打包的不仅是你的程序，也包括运行的环境，因此消除了我们重复的、单调的配置/调试任务。项目在打包后可以在所有的环境下，以相同的方式运行。让开发测试等成员不再关注构建、调试等事情。可以将更多的时间放在业务本身。</p>
+<h1 id="docker-简介">docker 简介</h1>
+<p>不同于虚拟机，容器技术只隔离应用程序的运行环境但容器之间可以共用同一个操作系统，这使它在继承了虚拟机优点的同时还摒弃了其缺点。而 docker，则是容器技术的其中一种实现。</p>
+<p>docker 是一个用 Go 语言实现的开源项目，可以让我们方便的创建和使用容器。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/59ae238dfc7be0360ee218363e29bf58.png" alt="https://cdn.nlark.com/yuque/0/2022/png/22641131/1671604671214-dfb9ce8d-7f63-4f19-af02-ebd3634db7a4.png"></p>
+<p>docker 使用客户端-服务器架构。客户端通过一些命令行与守护进程交互，守护进程管理 Docker 对象，如镜像、容器、网络和 volume。</p>
+<h1 id="docker-三要素">docker 三要素</h1>
+<ul>
+<li>image：镜像，一个只读模版，其中包含创建 Dokcer 容器的说明。</li>
+<li>container：容器，镜像的可运行实例。可以使用 docker cli 创建/启动/停止/删除/移动容器。同一个镜像，可以生成多个同时运行的容器。容器之间默认相互隔离。</li>
+<li>repository：镜像仓库，存放了各种各样的 image，相当于代码仓库中的 github。</li>
+</ul>
+<h1 id="docker-的基本使用">docker 的基本使用</h1>
+<h3 id="根据镜像启动一个容器">根据镜像启动一个容器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 前置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用apt（或其他）下载docker</span>
+</span></span><span class="line"><span class="cl">apt install docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 例</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 run命令 启动一个容器 docker run &lt;image name&gt;</span>
+</span></span><span class="line"><span class="cl">docker run ubuntu
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当系统内没有 ubuntu 镜像时会自动去 docker hub 上拉取后再启动容器。默认<code>attached</code>模式，会占用当前窗口并展示实时日志。可以通过<code>Ctrl + c</code>停止 docker 服务。更适用于容器和程序的调试阶段。</p>
+<p>如果想在后台运行可以（使用<code>detached</code>模式）<code>docker run -d &lt; image name &gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d ubuntu
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看在后台运行的容器的日志</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker logs &lt;name or id&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查看已启动的容器">查看已启动的容器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker ps
+</span></span><span class="line"><span class="cl"># 会打印当前运行的docker容器信息
+</span></span><span class="line"><span class="cl"># id 容器id
+</span></span><span class="line"><span class="cl"># image 镜像名称
+</span></span><span class="line"><span class="cl"># status 状态 up/exited ...
+</span></span><span class="line"><span class="cl"># ports 协议和端口
+</span></span><span class="line"><span class="cl"># names 容器名称
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>docker ps 只能查看运行的容器，如果要查看所有容器（包括已停止的）可以加个 <code>-a</code>参数:<code>docker ps -a</code></p>
+<p>只查看容器 id 可以加个<code>-q</code>参数：<code>docker ps -q</code>(可以搭配 docker rm 使用 进行批量删除实例： <code>docker rm $(docker container ps -aq)</code>)</p>
+<h3 id="停止启动重启删除一个已启动的容器">停止/启动/重启/删除一个已启动的容器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker stop &lt;name or id&gt;
+</span></span><span class="line"><span class="cl">docker start &lt;name or id&gt;
+</span></span><span class="line"><span class="cl">docker restart &lt;name or id&gt;
+</span></span><span class="line"><span class="cl">docker rm &lt;name or id&gt; # 删除容器前需要先停止容器。或加上强制删除参数 -f
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="开启容器的交互">开启容器的交互</h3>
+<p>有时候容器不是一个简单的服务，而是需要交互的操作系统，可以在使用<code>detached</code>模式启动容器后使用 exec 进入容器进行交互</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker exec -it &lt;name or id&gt; sh
+</span></span><span class="line"><span class="cl"># exec 执行
+</span></span><span class="line"><span class="cl"># -it 交互模式
+</span></span><span class="line"><span class="cl"># sh 使用shell脚本进行交互
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="其他">其他</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#image
+</span></span><span class="line"><span class="cl">docker pull &lt;image name&gt; # 在docker hub中拉取镜像
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker image ls #查看已有的镜像信息
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker image inspect &lt;image id&gt; #查看镜像详细信息，例如镜像id，暴露出的端口，volumn位置等。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 导出一个已有的镜像，执行后，当前文件夹下会生成一个镜像文件
+</span></span><span class="line"><span class="cl"># save：导出；
+</span></span><span class="line"><span class="cl"># &lt;name:tag&gt;:镜像名称：版本；
+</span></span><span class="line"><span class="cl"># -o: 输出
+</span></span><span class="line"><span class="cl"># fileName：导出后的文件名称
+</span></span><span class="line"><span class="cl">docker image save &lt;name:tag&gt; -o &lt;fileName&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 导入一个已有的镜像
+</span></span><span class="line"><span class="cl"># &lt;./filename&gt; 要导入的镜像文件路径
+</span></span><span class="line"><span class="cl">docker image load -i &lt;./filename&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="使用-dockerfile-构建自己的镜像">使用 Dockerfile 构建自己的镜像</h1>
+<p>之前使用的是已创建好的镜像， 我们可以自定义一个 Dockerfile 文件来构建自己的镜像。一般我们会在应用程序根目录与 package.json 同级目录下创建 Dockerfile 文件。</p>
+<p>Dockerfile 是一个文本文件，它包含了用户可以在命令行上调用的 docker 构建景象相关的所有命令，它遵循特定的格式和指令集，指令名称和参数以空格分隔，指令名称不区分大小写，但 Docker 约定它们是大写的，以便更容易的区分指令和参数。<a href="https://docs.docker.com/engine/reference/builder/">其他具体指令可以参考 Dockerfile 语法</a>,每个语法指令都会在图像中创建一个图层，当您更改 Dockerfile 并重建映像时，只有那些已更改的图层才会被重建。这也是镜像相对小巧、快速的部分原因。</p>
+<p>说几个常用的语法指令：</p>
+<ul>
+<li>ARG: 用来定义参数的命令,可以在打包镜像时使用<code>docker build --build-arg &lt;varname&gt;=&lt;value&gt;</code> 命令将变量值传递到 Dockerfile 内部，如果 ARG 指令有默认值并且在构建时没有传递任何值，则构建器使用默认值。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-docker" data-lang="docker"><span class="line"><span class="cl"><span class="c"># ARG &lt;name&gt;[=&lt;default value&gt;]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> data<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ARG</span> <span class="nv">name</span><span class="o">=</span>zhangsan
+</span></span><span class="line"><span class="cl"><span class="k">ARG</span> <span class="nv">age</span><span class="o">=</span><span class="m">18</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>FORM: 在 Dockerfile 里，除去 ARG 指令外，一个有效的 Dockerfile 必须由 FROM 指令开头，用来指定你要构建镜像的基础镜像。FROM 指令前面只能有一个或多个 ARG 指令，用来声明 FROM 行使用的参数。</li>
+<li>WORKDIR：用来定义镜像运行后的工作目录</li>
+<li>COPY: 用来将主机的文件复制到镜像中，<code>. .</code> 表示将当前目录复制到容器中。</li>
+<li>CMD：打包好的镜像在启动后默认执行的命令。</li>
+<li>ESPOSE：用来暴露镜像的端口号，告知使用容器的人，当前镜像需要监听的的端口和协议。暴露出来后，可以在镜像打包后，通过 <code>docker inspect &lt;image id&gt;</code> 来查看暴露出的端口。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-docker" data-lang="docker"><span class="line"><span class="cl"><span class="c"># cd /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># vi Dockerfile</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> node:18-alpine</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> . .<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;node&#34;</span><span class="p">,</span> <span class="s2">&#34;src/index.js&#34;</span><span class="p">]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 3000</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用docker-build根据dockerfile构建镜像">使用<code>docker build</code>根据<code>Dockerfile</code>构建镜像</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 根据Dockerfile构建镜像</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># build 构建命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -t &lt;image name&gt;通过-t给要打包的镜像取一个名字</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># path Dockerfile文件所在路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker build -t &lt;image name&gt; &lt;path:相对路径，根据这个路径寻找Dockerfile文件&gt; .表示它应该在当前目录中查找Dockerfile。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 例</span>
+</span></span><span class="line"><span class="cl">docker build -t tzzimage .
+</span></span><span class="line"><span class="cl"><span class="c1"># 路径是必填项 . 指的是当前路径</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>打包完成后，<code>docker image ls</code>查看已有镜像发现 tzzimage 镜像已经存在了。</p>
+<h3 id="运行构建好的镜像">运行构建好的镜像</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># -d 从后台启动容器
+</span></span><span class="line"><span class="cl"># -p port:port: 指定端口映射，第一个port表示主机要发布的端口，第二个是容器暴露的端口。没有端口映射将无法访问在容器中启动的应用程序。
+</span></span><span class="line"><span class="cl">docker run -dp 3000:3000 tzzimage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行后，就可以访问 http://localhost:3000 了。</p>
+<p>还可以通过<code>docker ps</code>查看容器状态</p>
+<h3 id="状态管理">状态管理</h3>
+<p>启动后的容器是无状态的，虽然可以容器中创建、更新、删除文件，但随着容器的关闭，相关的数据并不会得到保留，但是在日常使用中，经常会遇到一些需要保留数据的容器，或者在多个容器之间进行数据共享。这就涉及到了容器的数据管理。需要对容器中的数据进行持久化。</p>
+<ul>
+<li>Volume</li>
+</ul>
+<p>volume 提供了将容器特定文件到主机的能力，如果在容器启动时挂载容器中的目录，则该目录的更改也会在主机上看到。我们跨容器重新启动并挂载同一目录，我们会看到相同的文件。</p>
+<p>使用<code>docker volume create</code>命令创建卷。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker volume create volume1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行 docker run 命令时添加&ndash;mount 选项指定 volumn 挂载，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -dp 3000:3000 --mount <span class="nv">type</span><span class="o">=</span>volume,src<span class="o">=</span>volume1,target<span class="o">=</span>/app tzzimage
+</span></span><span class="line"><span class="cl"><span class="c1"># or</span>
+</span></span><span class="line"><span class="cl">docker run -dp 3000:3000 -v volume1:/app tzzimage
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>表示我们使用了 volume1 volume，并将其挂载到了容器内的/app 目录下，如果该 volume 未被创建时，docker 会自动帮我们创建
+在容器启动后，我们在/app 目录下创建一个文件 aaa.txt.</p>
+<p>把容器删除后重新指定 volume 创建，会发现 aaa.txt 依旧存在。
+通过 docker volume inspect 命令来查看 volume 详情, Mountpoint 属性，是主机磁盘存储数据的实际位置。docker 会把数据存储在这个地方，当我们使用这个 volume 启动容器的时候会把这个目录挂载到容器中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker volume inspect todo-db
+</span></span><span class="line"><span class="cl"><span class="o">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;CreatedAt&#34;</span>: <span class="s2">&#34;2023-02-22T09:23:11Z&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Driver&#34;</span>: <span class="s2">&#34;local&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Labels&#34;</span>: <span class="o">{}</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Mountpoint&#34;</span>: <span class="s2">&#34;/var/lib/docker/volumes/volume1/_data&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Name&#34;</span>: <span class="s2">&#34;volume1&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Options&#34;</span>: <span class="o">{}</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;Scope&#34;</span>: <span class="s2">&#34;local&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过这种方式，我们可以持久性的存储应用程序的数据，但在某些情况下，还有另外一种类型的状态管理。</p>
+<ul>
+<li>bind</li>
+</ul>
+<p>bind 是另一种挂载方式，他允许你将主机文件系统的目录共享到容器中。在处理应用程序时，您可以使用 bind 方式，将程序源代码挂载到容器中。一旦在容器外部保存文件，容器内就会立即看到您对代码所做的更改。这意味着我们可以在容器中运行进程，监视文件系统更改并响应它们。我们可以搭配着 nodemon，对已启动的程序进行热更新。常常在本地开发调试的时候使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-docker" data-lang="docker"><span class="line"><span class="cl">docker run -dp 3000:3000 --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/app,target<span class="o">=</span>/app tzzimage<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">肆码难椎</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-02-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/myblog/tags/docker/">docker</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/myblog/post/ahooks%E4%B8%AD%E7%9A%84%E6%A0%B8%E5%BF%83hook-userequest%E4%B8%8B/">
+            <span class="next-text nav-default">ahooks中的核心hook-useRequest（下）</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="sunshine-tzz@qq.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/tzz-v" class="iconfont icon-github" title="github"></a>
+  <a href="https://tzz-v.github.io/myblog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>肆码难椎</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js" integrity="sha256-jwCP0NAdCBloaIWTWHmW4i3snUNMHUNO+jr9rYd2iOI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.locales.min.js" integrity="sha256-ZwofwC1Lf/faQCzN7nZtfijVV6hSwxjQMwXL4gn9qU8=" crossorigin="anonymous"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+
+
+
+<script type="text/javascript" src="/myblog/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

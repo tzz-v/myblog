@@ -6,11 +6,11 @@
     <description>Recent content in Categories on MyBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 25 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>前端</title>
       <link>https://tzz-v.github.io/myblog/categories/%E5%89%8D%E7%AB%AF/</link>
-      <pubDate>Fri, 25 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://tzz-v.github.io/myblog/categories/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
@@ -22,15 +22,6 @@
       <pubDate>Fri, 07 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://tzz-v.github.io/myblog/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>shortcodes</title>
-      <link>https://tzz-v.github.io/myblog/categories/shortcodes/</link>
-      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
-      
-      <guid>https://tzz-v.github.io/myblog/categories/shortcodes/</guid>
       <description></description>
     </item>
     
