@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>期待Web Component的未来 - LoveIt</title><meta name="Description" content="这篇文章展示了web Component的基本使用"><meta property="og:title" content="期待Web Component的未来" />
+<meta property="og:description" content="这篇文章展示了web Component的基本使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" /><meta property="og:image" content="https://tzz-v.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-06T00:00:00+00:00" /><meta property="og:site_name" content="肆码难椎" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://tzz-v.github.io/logo.png"/>
+
+<meta name="twitter:title" content="期待Web Component的未来"/>
+<meta name="twitter:description" content="这篇文章展示了web Component的基本使用"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" /><link rel="prev" href="https://tzz-v.github.io/myblog/docker%E5%88%9D%E8%AF%86/" /><link rel="stylesheet" href="/myblog/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "期待Web Component的未来",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/tzz-v.github.io\/myblog\/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/tzz-v.github.io\/myblog\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "前端, 学习笔记","wordcount":  2915 ,
+        "url": "https:\/\/tzz-v.github.io\/myblog\/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5\/","datePublished": "2023-03-06T00:00:00+00:00","dateModified": "2023-03-06T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/tzz-v.github.io\/myblog\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "肆码难椎"
+            },"description": "这篇文章展示了web Component的基本使用"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/myblog/" title="LoveIt"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/myblog/posts/"> 所有文章 </a><a class="menu-item" href="/myblog/tags/"> 标签 </a><a class="menu-item" href="/myblog/categories/"> 分类 </a><a class="menu-item" href="/myblog/categories/documentation/"> 文档 </a><a class="menu-item" href="/myblog/about/"> 关于 </a><a class="menu-item" href="https://github.com/tzz-v" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/myblog/" title="LoveIt"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/myblog/posts/" title="">所有文章</a><a class="menu-item" href="/myblog/tags/" title="">标签</a><a class="menu-item" href="/myblog/categories/" title="">分类</a><a class="menu-item" href="/myblog/categories/documentation/" title="">文档</a><a class="menu-item" href="/myblog/about/" title="">关于</a><a class="menu-item" href="https://github.com/tzz-v" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">期待Web Component的未来</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/tzz-v" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>肆码难椎</a></span>&nbsp;<span class="post-category">收录于 <a href="/myblog/categories/%E5%89%8D%E7%AB%AF/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>前端</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-06">2023-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 2915 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" class="leancloud_visitors" data-flag-title="期待Web Component的未来">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#custom-element自定义元素">Custom element(自定义元素)</a></li>
+    <li><a href="#shadow-dom影子-dom">Shadow DOM（影子 DOM）</a>
+      <ul>
+        <li><a href="#基本用法"><strong>****</strong>**<strong>****<strong>基本用法</strong>****</strong>**<strong>****</strong></a></li>
+        <li><a href="#实现一个简单的-tooltip">实现******<strong>**</strong>****<strong>**</strong>****<strong>**</strong>****<strong>一个简单的 tooltip</strong>****<strong>**</strong>****<strong>**</strong>****<strong>**</strong>******</a></li>
+      </ul>
+    </li>
+    <li><a href="#html-templatehtml-模板">HTML template（HTML 模板）</a>
+      <ul>
+        <li><a href="#在-web-组件-中使用模版和插槽"><strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**</strong>**<strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**<strong>在 web 组件 中使用模版和插槽</strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**</strong>**<strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#web-component-实践">Web Component 实践</a>
+      <ul>
+        <li><a href="#基础组件库">基础组件库</a></li>
+        <li><a href="#svelte">Svelte</a></li>
+        <li><a href="#微前端">微前端</a></li>
+      </ul>
+    </li>
+    <li><a href="#web-component-的缺点">Web Component 的缺点</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Web Component 本身不是一个规范，而是一组技术的应用，Web Component 现阶段主要分为三部分：<code>Custom element</code>、<code>Shadow DOM</code>、<code>Template</code>。通过它们的搭配使用，可以让我们在不借助第三方框架（react，vue）的情况下，构建独立的，可重用的自定义组件。</p>
+<h2 id="custom-element自定义元素">Custom element(自定义元素)</h2>
+<p>Custom element 是一组 javasrcipt API，它允许我们自定义一些定制元素及行为。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 组建使用 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">box-div</span> <span class="na">color</span><span class="o">=</span><span class="s">&#34;orange&#34;</span> <span class="na">text</span><span class="o">=</span><span class="s">&#34;hello&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">box-div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 组建定义 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">class</span> <span class="nx">boxDiv</span> <span class="kr">extends</span> <span class="nx">HTMLElement</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">window</span><span class="p">.</span><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;box-div&#39;</span><span class="p">,</span> <span class="nx">boxDiv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><figure><a class="lightgallery" href="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png" title="demo" data-thumbnail="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png" data-sub-html="<h2>demo</h2><p>demo</p>">
+        <img
+            class="lazyload"
+            src="/myblog/svg/loading.min.svg"
+            data-src="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png"
+            data-srcset="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png, /myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png 1.5x, /myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png 2x"
+            data-sizes="auto"
+            alt="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/01.png" width="879" height="181" />
+    </a><figcaption class="image-caption">demo</figcaption>
+    </figure></p>
+<p>js 提供了<code>customElements.define</code> api，用来注册自定义元素，customElements.define()接收三个参数：</p>
+<ul>
+<li>符合命名标准的参数名称（不能是单个单词，且必须要有短横线）</li>
+<li>用于定义行为的类</li>
+<li>可选参数：一个包含  <code>extends</code>属性的配置对象，指定所创建元素继承于哪个内置的 HTML 元素。</li>
+</ul>
+<p>Custom element 有两种定义元素的方式，没有传递第三个参数表示独立创建，不继承内置元素。在使用时可以直接写成 HTML 标签的形式来使用，例如<code>&lt;word-count&gt;</code> 或者通过 js 创建<code>document.createElement(“word-count”)</code> 。</p>
+<p>若在定义元素时指定了所扩展的元素，表示继承创建。在使用时则需要先写出基本的元素标签，并通过<code>is</code> 指定所扩展的元素。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;word-count&#39;</span><span class="p">,</span> <span class="nx">WordCount</span><span class="p">,</span> <span class="p">{</span> <span class="kr">extends</span><span class="o">:</span> <span class="s1">&#39;p&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">&lt;</span><span class="nt">p</span> <span class="na">is</span><span class="o">=</span><span class="s">&#34;word-count&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 或
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">is</span><span class="o">:</span> <span class="s1">&#39;word-count&#39;</span> <span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它还可以指定一些回调函数，它们将在元素不同的生命时期被调用</p>
+<ul>
+<li><code>connectedCallback</code>：当 custom element 首次被插入文档 DOM 时，被调用。</li>
+<li><code>disconnectedCallback</code>：当 custom element 从文档 DOM 中删除时，被调用。</li>
+<li><code>adoptedCallback</code>：当 custom element 被移动到新的文档时，被调用。</li>
+<li><code>attributeChangedCallback</code>: 当 custom element 增加、删除、修改自身属性时，被调用。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">boxDiv</span> <span class="kr">extends</span> <span class="nx">HTMLElement</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">static</span> <span class="nx">get</span> <span class="nx">observedAttributes</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">public</span> <span class="nx">connectedCallback</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;元素插入DOM中.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">public</span> <span class="nx">disconnectedCallback</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;元素被删除.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">public</span> <span class="nx">adoptedCallback</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;元素被移动.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">public</span> <span class="nx">attributeChangedCallback</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">,</span> <span class="nx">newValue</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;元素属性变更.&#39;</span> <span class="nx">name</span><span class="err">，</span><span class="nx">oldValue</span><span class="err">，</span> <span class="nx">newValue</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注：想在某个元素属性变化后，触发<code>attributeChangedCallback()</code>回调函数，需要先必须监听这个属性。这可以通过定义<code>observedAttributes()</code> get 函数来实现，<code>observedAttributes()</code>
+函数体内包含一个 return 语句，返回一个数组，包含了需要监听的属性名称。监听后。每当元素的属性变化时，<code>attributeChangedCallback()</code>回调函数会执行。我们可以查看属性的名称、旧值与新值。</p>
+</blockquote>
+<p>通过这些生命周期函数，我们可以动态的变更我们的 web 组件。</p>
+<h2 id="shadow-dom影子-dom">Shadow DOM（影子 DOM）</h2>
+<p>Shadow DOM 也有一组 javascript API，他不是一个新事物，它允许我们在常规 DOM 元素上附加一个独立隐藏的特殊类型 DOM 元素。这部分的代码与外部代码相互隔离。内部的任何代码都无法影响外部。</p>
+<p>通过 Shadow DOM 和 Custom element 搭配的方式，可以保证自定义元素的独立。使其不会影响到它外部的元素。</p>
+<p><figure><a class="lightgallery" href="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png" title="shadow 分析" data-thumbnail="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png" data-sub-html="<h2>shadow 分析</h2><p>shadow 分析</p>">
+        <img
+            class="lazyload"
+            src="/myblog/svg/loading.min.svg"
+            data-src="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png"
+            data-srcset="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png, /myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png 1.5x, /myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png 2x"
+            data-sizes="auto"
+            alt="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/02.png" width="1107" height="509" />
+    </a><figcaption class="image-caption">shadow 分析</figcaption>
+    </figure></p>
+<h3 id="基本用法"><strong>****</strong>**<strong>****<strong>基本用法</strong>****</strong>**<strong>****</strong></h3>
+<p>可以使用 Element.attachShadow() 方法来将一个 shadow root 附加到任何一个元素上。它接受一个配置对象作为参数，该对象有一个 mode 属性，值可以是 open 或者 closed：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">shadow</span> <span class="o">=</span> <span class="nx">elementRef</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">shadow</span> <span class="o">=</span> <span class="nx">elementRef</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;closed&#39;</span> <span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>open</code> 表示可以通过页面内的 javascript 方法来获取 Shadow DOM。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">myShadowDom</span> <span class="o">=</span> <span class="nx">myCustomElem</span><span class="p">.</span><span class="nx">shadowRoot</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果你将一个 Shadow root 附加到一个 Custom element 上，并且将 mode 设置为 closed，那么就不可以从外部获取 Shadow DOM 了。<code>myCustomElem.shadowRoot</code> 将会返回 null。</p>
+<h3 id="实现一个简单的-tooltip">实现******<strong>**</strong>****<strong>**</strong>****<strong>**</strong>****<strong>一个简单的 tooltip</strong>****<strong>**</strong>****<strong>**</strong>****<strong>**</strong>******</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">popup</span><span class="err">-</span><span class="na">info</span> <span class="na">text</span><span class="o">=</span><span class="s">&#34;一个点击可直接暴富的朴素按钮&#34;</span><span class="p">&gt;</span><span class="nx">button</span><span class="o">&lt;</span><span class="err">/popup-info&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">class</span> <span class="nx">PopUpInfo</span> <span class="kr">extends</span> <span class="nx">HTMLElement</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">shadow</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">style</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;style&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">style</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="sb">`
+</span></span></span><span class="line"><span class="cl"><span class="sb">      .wrapper {
+</span></span></span><span class="line"><span class="cl"><span class="sb">        position: relative;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        top: 100px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        left: 10px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      }
+</span></span></span><span class="line"><span class="cl"><span class="sb">      .info {
+</span></span></span><span class="line"><span class="cl"><span class="sb">        font-size: 14px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        width: 200px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        display: inline-block;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        border: 1px solid black;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        padding: 10px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        background: white;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        border-radius: 10px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        opacity: 0;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        transition: 0.6s all;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        position: absolute;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        bottom: 20px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        left: 10px;
+</span></span></span><span class="line"><span class="cl"><span class="sb">        z-index: 3;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      }
+</span></span></span><span class="line"><span class="cl"><span class="sb">      .title:hover + .info, .title:focus + .info {
+</span></span></span><span class="line"><span class="cl"><span class="sb">        opacity: 1;
+</span></span></span><span class="line"><span class="cl"><span class="sb">      }
+</span></span></span><span class="line"><span class="cl"><span class="sb">    `</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">style</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">wrapper</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;wrapper&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shadow</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// title信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">titleDom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">titleDom</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">titleDom</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">wrapper</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">titleDom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// tooltip信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr">const</span> <span class="nx">infoDom</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">infoDom</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">infoDom</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">wrapper</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">infoDom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;popup-info&#39;</span><span class="p">,</span> <span class="nx">PopUpInfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>定义一个自定义 DOM，然后创建一个 shadowDOM，给 shadowDOM 新增子标签<code>style</code> <code>titleSpan</code> <code>infoSpan</code> 。</p>
+<p>最后将 shadowDOM 附加到自定义 DOM 上。一个简单的 tooltip 就实现了。</p>
+<p><figure><a class="lightgallery" href="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif" title="tooltip组件效果 动图" data-thumbnail="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif" data-sub-html="<h2>效果 动图</h2><p>tooltip组件效果 动图</p>">
+        <img
+            class="lazyload"
+            src="/myblog/svg/loading.min.svg"
+            data-src="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif"
+            data-srcset="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif, /myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif 1.5x, /myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif 2x"
+            data-sizes="auto"
+            alt="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/03.gif" width="772" height="624" />
+    </a><figcaption class="image-caption">效果 动图</figcaption>
+    </figure></p>
+<p>目前看起来还有一些问题，比如我写 style 的方式是用模版字符串写的。比如我用的 jsAPI 生成的 dom 元素。可读性较差。再比如目前的提示信息只接收字符串，不支持 DOM 类型。这些问题可以使用 template 和 slot 来解决。</p>
+<h2 id="html-templatehtml-模板">HTML template（HTML 模板）</h2>
+<p>HTML 提供了<template>和<slot>标签，<template>标签和其子内容不会在 DOM 中呈现。但仍然可以使用 JS 去引用它。借助这个特性。可以让我们创建一个用来灵活填充 web 组件的模版。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;my-paragraph&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">My</span> <span class="nx">paragraph</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段代码不会在页面中呈现，但却可以通过<code>document.querySelector()</code> 等 API 获取</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">template</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#my-paragraph&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><slot>标签则允许我们在模版中定义占位符，在使用该模版时，该占位符可以填充所需的任何 HTML 标记片段。</p>
+<p>通过<code>&lt;template&gt;</code> 标签和插槽<code>&lt;slot&gt;</code>，我们可以将想要的元素定制成一个模版。随取随用。</p>
+<h3 id="在-web-组件-中使用模版和插槽"><strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**</strong>**<strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**<strong>在 web 组件 中使用模版和插槽</strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**</strong>**<strong>**</strong>**<strong>**</strong>****<strong>**</strong>**<strong>**</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">popup</span><span class="err">-</span><span class="na">info</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://www.baidu.com&#34;</span> <span class="na">slot</span><span class="o">=</span><span class="s">&#34;info&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&gt;</span><span class="nx">一个点击可直接暴富的朴素按钮</span><span class="o">&lt;</span><span class="err">/a</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">slot</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span><span class="nx">button</span><span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/popup-info&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;tooltip-template&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">wrapper</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">position</span><span class="o">:</span> <span class="nx">relative</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">top</span><span class="o">:</span> <span class="mi">100</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">left</span><span class="o">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">font</span><span class="o">-</span><span class="nx">size</span><span class="o">:</span> <span class="mi">14</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">width</span><span class="o">:</span> <span class="mi">200</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">display</span><span class="o">:</span> <span class="nx">inline</span><span class="o">-</span><span class="nx">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">border</span><span class="o">:</span> <span class="mi">1</span><span class="nx">px</span> <span class="nx">solid</span> <span class="nx">black</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">padding</span><span class="o">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">background</span><span class="o">:</span> <span class="nx">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">border</span><span class="o">-</span><span class="nx">radius</span><span class="o">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">opacity</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">transition</span><span class="o">:</span> <span class="mf">0.6</span><span class="nx">s</span> <span class="nx">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">position</span><span class="o">:</span> <span class="nx">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">bottom</span><span class="o">:</span> <span class="mi">20</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">left</span><span class="o">:</span> <span class="mi">10</span><span class="nx">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">z</span><span class="o">-</span><span class="nx">index</span><span class="o">:</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">title</span><span class="o">:</span><span class="nx">hover</span> <span class="o">+</span> <span class="p">.</span><span class="nx">info</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">title</span><span class="o">:</span><span class="nx">focus</span> <span class="o">+</span> <span class="p">.</span><span class="nx">info</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">opacity</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;wrapper&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span><span class="nx">title</span><span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;info&#34;</span><span class="p">&gt;&lt;</span><span class="nt">slot</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;info&#34;</span><span class="p">&gt;</span><span class="nx">info</span><span class="p">&lt;/</span><span class="nt">slot</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">class</span> <span class="nx">PopUpInfo</span> <span class="kr">extends</span> <span class="nx">HTMLElement</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">super</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">template</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#tooltip-template&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">templateContent</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">content</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">const</span> <span class="nx">shadow</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">attachShadow</span><span class="p">({</span> <span class="nx">mode</span><span class="o">:</span> <span class="s1">&#39;open&#39;</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">shadow</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">templateContent</span><span class="p">.</span><span class="nx">cloneNode</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;popup-info&#39;</span><span class="p">,</span> <span class="nx">PopUpInfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为 style 较长，也可以采用 link 标签方式在外部引入</p>
+<h2 id="web-component-实践">Web Component 实践</h2>
+<h3 id="基础组件库">基础组件库</h3>
+<p>市面上已经有很多基于 Web Components 实现的跨框架 UI 组件库。 它可以同时在任意框架或无框架中使用。</p>
+<h3 id="svelte">Svelte</h3>
+<p>scelte 是目前比较火的前端框架，他有一个特点就是可以自定义组件转成通用的 web 组件（web component）。在多团队协同完成的大项目中，各个团队可能使用不同的框架版本，甚至不同的框架，这让不同项目之间的组件复用变得困难。这种情况下 Svelte 就变成了沟通跨越框架鸿沟的桥梁，使用 Svelte 开发的无框架依赖的 Web Components，可以在各个框架间复用。</p>
+<h3 id="微前端">微前端</h3>
+<p>微前端有几个基本概念： 技术栈无关、应用间隔离、独立开发。目前 Web Components 都符合。在一些微前端方案里就采用了 Web Component 的模式。</p>
+<p>…</p>
+<h2 id="web-component-的缺点">Web Component 的缺点</h2>
+<ul>
+<li>再日常开发中，难免会遇到需要调整组件内部样式的时候，但由于 shadowDOM 的隔离机制，会导致我们很难去修改内部的样式。</li>
+<li>在一些复杂的组件中，数据通信和事件传递存在一定使用成本。</li>
+<li>…</li>
+</ul>
+<h2 id="结语">结语</h2>
+<p>Web Component 虽早在 11 年就已推出，且一直发展至今。他的潜力有目共睹，但目前还有很长的路要走。
+或许在以后，我们将不再依赖第三方框架，直接使用原生技术来开发页面也说不定。</p>
+<p>end.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-03-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" data-title="期待Web Component的未来" data-hashtags="前端,学习笔记"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" data-hashtag="前端"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" data-title="期待Web Component的未来"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" data-title="期待Web Component的未来"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/" data-title="期待Web Component的未来"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/myblog/tags/%E5%89%8D%E7%AB%AF/">前端</a>,&nbsp;<a href="/myblog/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/myblog/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/myblog/docker%E5%88%9D%E8%AF%86/" class="prev" rel="prev" title="Docker初识"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker初识</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/tzz-v" target="_blank">肆码难椎</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/myblog/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/myblog/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/myblog/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"肆码难椎","id-2":"肆码难椎"},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/myblog/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/myblog/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/myblog/js/theme.min.js"></script></body>
+</html>
