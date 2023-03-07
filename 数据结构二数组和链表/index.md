@@ -9,17 +9,17 @@
 
   其他线性表数据结构：链表、队列、栈。
 
-{% img /images/LinearTable.webp %}
+![demo](LinearTable.webp)
 
 - 非线性表： 数据之间不是简单的前后关系
 
-{% img /images/NotLinearTable.webp %}
+![demo](NotLinearTable.webp)
 
 # 链表
 
 与数组不同， 他并不需要一块连续的内存空间，他可以通过指针将一组零散的内存块串联起来使用。
 
-{% img /images/LinkedList.webp %}
+![demo](LinkedList.webp)
 
 最常见的三种链表结构： 单链表，双向链表，循环链表。
 
@@ -27,27 +27,27 @@
 
 链表通过指针将一串零散的内存块串联在一起，其中，内存块称为链表的节点，为了把所有的节点串起来，每个链表的节点除了存储数据外，还需要记录下一个链表的地址，我们把这个记录下个节点地址的指针叫做**后继指针 next**
 
-{% img /images/SingleLinkedList.webp %}
+![demo](SingleLinkedList.webp)
 
 头节点和尾节点两个节点比较特殊，
 
 - 头结点用来记录链表的基地址，有了它，就可以遍历得到整条链表。
 - 尾结点则指向一个**空地址 null**，表示这是链表的最后一个节点。
 
-{% img /images/LinkedListAction.webp %}
+![demo](LinkedListAction.webp)
 
 ## 循环链表
 
 循环链表是特殊的单链表，和单链表的区别就在于尾结点，循环链表的尾结点指向链表的头结点
 
-{% img /images/CircularLinkedList.webp %}
+![demo](CircularLinkedList.webp)
 
 ## 双向链表
 
 单链表只有一个方向，节点只有一个后继指针 next 指向后面的节点，双向链表则多了一个前驱指针 prev 指向前面的节点，支持双向遍历，增加了灵活性。
 同样的，既然多出一个空间用来存储前驱节点，所以，当存储同样多的数据时，双向链表要比单链表占据更多的内存空间
 
-{% img /images/BidirectionalLinkedList.webp %}
+![demo](BidirectionalLinkedList.webp)
 
 ## 链表的相关操作
 

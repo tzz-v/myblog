@@ -23,7 +23,7 @@
 从下标 0 开始，对相邻的数据进行比较，不满足条件则互换位置。
 
 一轮冒泡会让至少一个元素移动到他应该在的位置。重复 n 次。就完成了 n 个数据的排序。
-{% img /images/bubbling.webp %}
+![demo](bubbling.webp)
 可以看到，经过一次排序后，6 已经挪到了末尾。执行 6 次后，排序完成。
 两个优化点：
 
@@ -53,7 +53,7 @@ const bobbleSort = (arr) => {
 
 1. 首先将数组中的数据分为两个区间，已排序区间和未排序区间。（初始，已排序区间只有一个元素如第一个元素）
 2. 插入排序的核心思想： 遍历未排序区间的元素，在已排序区间中找到合适的位置，插入进去，并保证已排序区间一直有序。知道未排序区间中的元素为空。
-   {% img /images/insertionSort.webp %}
+   ![demo](insertionSort.webp)
    把数据 a 插入已排序区间：需要拿 a 与已排序区间的元素依次进行比较，找到合适的位置插入进去。
 
 ```
@@ -128,5 +128,5 @@ const selectionSort = (arr) => {
 ```
 
 总结：
-{% img /images/sortSummary.webp %}
+![demo](sortSummary.webp)
 
