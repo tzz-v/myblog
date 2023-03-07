@@ -26,13 +26,13 @@ Custom element 是一组 javasrcipt API，它允许我们自定义一些定制�
 </script>
 ```
 
-![demo](01.png 'demo')
+![demo](01.png)
 
 js 提供了`customElements.define` api，用来注册自定义元素，customElements.define()接收三个参数：
 
 - 符合命名标准的参数名称（不能是单个单词，且必须要有短横线）
 - 用于定义行为的类
-- 可选参数：一个包含  `extends`属性的配置对象，指定所创建元素继承于哪个内置的 HTML 元素。
+- 可选参数：一个包含 `extends`属性的配置对象，指定所创建元素继承于哪个内置的 HTML 元素。
 
 Custom element 有两种定义元素的方式，没有传递第三个参数表示独立创建，不继承内置元素。在使用时可以直接写成 HTML 标签的形式来使用，例如`<word-count>` 或者通过 js 创建`document.createElement(“word-count”)` 。
 
@@ -90,9 +90,9 @@ Shadow DOM 也有一组 javascript API，他不是一个新事物，它允许我
 
 通过 Shadow DOM 和 Custom element 搭配的方式，可以保证自定义元素的独立。使其不会影响到它外部的元素。
 
-![shadow 分析](02.png 'shadow 分析')
+![在这里插入图片描述](02.png)
 
-### **\*\*\*\***\*\***\*\*\*\***基本用法**\*\*\*\***\*\***\*\*\*\***
+### 基本用法
 
 可以使用 Element.attachShadow() 方法来将一个 shadow root 附加到任何一个元素上。它接受一个配置对象作为参数，该对象有一个 mode 属性，值可以是 open 或者 closed：
 
@@ -109,7 +109,7 @@ let myShadowDom = myCustomElem.shadowRoot;
 
 如果你将一个 Shadow root 附加到一个 Custom element 上，并且将 mode 设置为 closed，那么就不可以从外部获取 Shadow DOM 了。`myCustomElem.shadowRoot` 将会返回 null。
 
-### 实现**\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***一个简单的 tooltip**\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***
+### 实现一个简单的 tooltip
 
 ```jsx
 <body>
@@ -178,13 +178,13 @@ let myShadowDom = myCustomElem.shadowRoot;
 
 最后将 shadowDOM 附加到自定义 DOM 上。一个简单的 tooltip 就实现了。
 
-![tooltip组件效果 动图](03.gif '效果 动图')
+![](03.gif)
 
 目前看起来还有一些问题，比如我写 style 的方式是用模版字符串写的。比如我用的 jsAPI 生成的 dom 元素。可读性较差。再比如目前的提示信息只接收字符串，不支持 DOM 类型。这些问题可以使用 template 和 slot 来解决。
 
 ## HTML template（HTML 模板）
 
-HTML 提供了<template>和<slot>标签，<template>标签和其子内容不会在 DOM 中呈现。但仍然可以使用 JS 去引用它。借助这个特性。可以让我们创建一个用来灵活填充 web 组件的模版。
+HTML a 提供了`<template>`和`<slot>`标签，`<template`标签和其子内容不会在 DOM 中呈现。但仍然可以使用 JS 去引用它。借助这个特性。可以让我们创建一个用来灵活填充 web 组件的模版。
 
 ```jsx
 <template id="my-paragraph">
@@ -202,7 +202,7 @@ let template = document.querySelector('#my-paragraph');
 
 通过`<template>` 标签和插槽`<slot>`，我们可以将想要的元素定制成一个模版。随取随用。
 
-### **\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***在 web 组件 中使用模版和插槽**\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\***\*\***
+### 在 web 组件 中使用模版和插槽
 
 ```jsx
 <popup-info>
