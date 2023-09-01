@@ -12,7 +12,7 @@
 
 docker 是一个用 Go 语言实现的开源项目，可以让我们方便的创建和使用容器。
 
-![https://cdn.nlark.com/yuque/0/2022/png/22641131/1671604671214-dfb9ce8d-7f63-4f19-af02-ebd3634db7a4.png](https://img-blog.csdnimg.cn/img_convert/59ae238dfc7be0360ee218363e29bf58.png)
+<img src="docker.png" alt="Image" height="300">
 
 docker 使用客户端-服务器架构。客户端通过一些命令行与守护进程交互，守护进程管理 Docker 对象，如镜像、容器、网络和 volume。
 

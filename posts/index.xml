@@ -4,7 +4,39 @@
         <link>https://tzz-v.github.io/myblog/posts/</link>
         <description>所有文章 | LoveIt</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>:cowboy_hat_face: (肆码难椎)</managingEditor>
-            <webMaster>:cowboy_hat_face: (肆码难椎)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>:cowboy_hat_face: (肆码难椎)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 26 Jul 2023 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://tzz-v.github.io/myblog/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>读完 重构 之后</title>
+    <link>https://tzz-v.github.io/myblog/%E8%AF%BB%E5%AE%8C-%E9%87%8D%E6%9E%84-%E4%B9%8B%E5%90%8E/</link>
+    <pubDate>Wed, 26 Jul 2023 21:57:40 &#43;0800</pubDate>
+    <author>肆码难椎</author>
+    <guid>https://tzz-v.github.io/myblog/%E8%AF%BB%E5%AE%8C-%E9%87%8D%E6%9E%84-%E4%B9%8B%E5%90%8E/</guid>
+    <description><![CDATA[前言 最近拜读了下《重构 改善既有代码的设计第二版》书里大概可以分为 4 部分，前半部分主要讲了 什么是重构、为什么要重构、什么时候重构；后半部分则是]]></description>
+</item>
+<item>
+    <title>读react新官方文档，一些 hook 的使用</title>
+    <link>https://tzz-v.github.io/myblog/%E8%AF%BBreact%E6%96%B0%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%80%E4%BA%9B-hook-%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Mon, 05 Jun 2023 21:57:40 &#43;0800</pubDate>
+    <author>肆码难椎</author>
+    <guid>https://tzz-v.github.io/myblog/%E8%AF%BBreact%E6%96%B0%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%80%E4%BA%9B-hook-%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[前言 React 的新官方文档更新了有一段时间了，最近看了下，发现有不少新东西。 一些默默出现的新的 hooks useId 在 React 中直接编写 ID 并不是一个好的习惯，一个组件可能会]]></description>
+</item>
+<item>
+    <title>Promise 对象池</title>
+    <link>https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/</link>
+    <pubDate>Sun, 16 Apr 2023 21:57:40 &#43;0800</pubDate>
+    <author>肆码难椎</author>
+    <guid>https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/</guid>
+    <description><![CDATA[我正在参加「掘金·启航计划」 前言 最近leetcode专门出了一个 JavaScript 专栏，里面是一些和 javaScript 相关的题目，基本上是问一些日常使用或经典的工具函数的内]]></description>
+</item>
+<item>
+    <title>要是创建MR(PR)后它能自己创建一份预览环境就好了</title>
+    <link>https://tzz-v.github.io/myblog/%E8%A6%81%E6%98%AF%E5%88%9B%E5%BB%BAmrpr%E5%90%8E%E5%AE%83%E8%83%BD%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E4%B8%80%E4%BB%BD%E9%A2%84%E8%A7%88%E7%8E%AF%E5%A2%83%E5%B0%B1%E5%A5%BD%E4%BA%86/</link>
+    <pubDate>Mon, 20 Mar 2023 21:57:40 &#43;0800</pubDate>
+    <author>肆码难椎</author>
+    <guid>https://tzz-v.github.io/myblog/%E8%A6%81%E6%98%AF%E5%88%9B%E5%BB%BAmrpr%E5%90%8E%E5%AE%83%E8%83%BD%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E4%B8%80%E4%BB%BD%E9%A2%84%E8%A7%88%E7%8E%AF%E5%A2%83%E5%B0%B1%E5%A5%BD%E4%BA%86/</guid>
+    <description><![CDATA[懒也是人类进步的阶梯 一个因为懒而写出来的前端工具-前端项目预览 🙃 前言 在正文开始之前，不得不先提一下我们公司的代码合并流程。 日常开发中，当局者]]></description>
+</item>
+<item>
     <title>期待Web Component的未来</title>
     <link>https://tzz-v.github.io/myblog/%E6%9C%9F%E5%BE%85web-component%E7%9A%84%E6%9C%AA%E6%9D%A5/</link>
     <pubDate>Tue, 07 Mar 2023 00:00:00 &#43;0000</pubDate>
@@ -51,38 +83,6 @@
     <author>肆码难椎</author>
     <guid>https://tzz-v.github.io/myblog/js%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
     <description><![CDATA[红宝书（学习笔记） 三、语言基础 null 和 undefined（3.4） null: 表示一个空对象指针。这也是 typeof null 会返回‘object’的原因。 undefine]]></description>
-</item>
-<item>
-    <title>数据结构（五）排序</title>
-    <link>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BA%94%E6%8E%92%E5%BA%8F/</link>
-    <pubDate>Sat, 08 Jan 2022 21:57:40 &#43;0800</pubDate>
-    <author>肆码难椎</author>
-    <guid>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BA%94%E6%8E%92%E5%BA%8F/</guid>
-    <description><![CDATA[排序的分类 时间复杂度（O(n^2)）: 冒泡、插入、选择； 时间复杂度（O(nLogn)）: 快排，归并； 时间复杂度（O(n)）: 桶，计数，基数；]]></description>
-</item>
-<item>
-    <title>数据结构（四）递归</title>
-    <link>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%9B%E9%80%92%E5%BD%92/</link>
-    <pubDate>Fri, 07 Jan 2022 21:57:40 &#43;0800</pubDate>
-    <author>肆码难椎</author>
-    <guid>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9B%9B%E9%80%92%E5%BD%92/</guid>
-    <description><![CDATA[递归 描述： 一种非常高效、简洁的编程技巧。函数调用自身的方式称为递归调用，调用成为递，返回称为归； 正确姿势：找到如何将大问题分解为小问题的规律]]></description>
-</item>
-<item>
-    <title>数据结构（三）栈与队列</title>
-    <link>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%89%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</link>
-    <pubDate>Thu, 06 Jan 2022 21:57:40 &#43;0800</pubDate>
-    <author>肆码难椎</author>
-    <guid>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%89%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/</guid>
-    <description><![CDATA[栈 栈是一种操作受限的线性表，只允许在一端插入（push()）和删除（pop()）数据。 特性： 后进者先出，先进者后出 使用场景： 如浏览器的前进、]]></description>
-</item>
-<item>
-    <title>数据结构（二）数组与链表</title>
-    <link>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BA%8C%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/</link>
-    <pubDate>Tue, 04 Jan 2022 21:57:40 &#43;0800</pubDate>
-    <author>肆码难椎</author>
-    <guid>https://tzz-v.github.io/myblog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%BA%8C%E6%95%B0%E7%BB%84%E5%92%8C%E9%93%BE%E8%A1%A8/</guid>
-    <description><![CDATA[数组 数组是一种线性表数据结构，用一组连续的内存空间来存储数据 线性表： 线性表就是数据排成像一条线一样的结构，每个线性表上的数据最多只有前和后两]]></description>
 </item>
 </channel>
 </rss>

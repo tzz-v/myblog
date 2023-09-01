@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Promise 对象池 - LoveIt</title><meta name="Description" content="leetcode"><meta property="og:title" content="Promise 对象池" />
+<meta property="og:description" content="leetcode" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" /><meta property="og:image" content="https://tzz-v.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-16T21:57:40+08:00" />
+<meta property="article:modified_time" content="2023-04-16T21:57:40+08:00" /><meta property="og:site_name" content="肆码难椎" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://tzz-v.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Promise 对象池"/>
+<meta name="twitter:description" content="leetcode"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" /><link rel="prev" href="https://tzz-v.github.io/myblog/%E8%A6%81%E6%98%AF%E5%88%9B%E5%BB%BAmrpr%E5%90%8E%E5%AE%83%E8%83%BD%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E4%B8%80%E4%BB%BD%E9%A2%84%E8%A7%88%E7%8E%AF%E5%A2%83%E5%B0%B1%E5%A5%BD%E4%BA%86/" /><link rel="next" href="https://tzz-v.github.io/myblog/%E8%AF%BBreact%E6%96%B0%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%80%E4%BA%9B-hook-%E7%9A%84%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="/myblog/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Promise 对象池",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/tzz-v.github.io\/myblog\/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/tzz-v.github.io\/myblog\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "leedcode","wordcount":  3111 ,
+        "url": "https:\/\/tzz-v.github.io\/myblog\/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0\/","datePublished": "2023-04-16T21:57:40+08:00","dateModified": "2023-04-16T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/tzz-v.github.io\/myblog\/images\/avatar.png",
+                    "width":  972 ,
+                    "height":  972 
+                }},"author": {
+                "@type": "Person",
+                "name": "肆码难椎"
+            },"description": "leetcode"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/myblog/" title="LoveIt"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/myblog/posts/"> 所有文章 </a><a class="menu-item" href="/myblog/tags/"> 标签 </a><a class="menu-item" href="/myblog/categories/"> 分类 </a><a class="menu-item" href="/myblog/categories/documentation/"> 文档 </a><a class="menu-item" href="/myblog/about/"> 关于 </a><a class="menu-item" href="https://github.com/tzz-v" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="选择语言">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/myblog/" title="LoveIt"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/myblog/posts/" title="">所有文章</a><a class="menu-item" href="/myblog/tags/" title="">标签</a><a class="menu-item" href="/myblog/categories/" title="">分类</a><a class="menu-item" href="/myblog/categories/documentation/" title="">文档</a><a class="menu-item" href="/myblog/about/" title="">关于</a><a class="menu-item" href="https://github.com/tzz-v" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Promise 对象池</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/tzz-v" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>肆码难椎</a></span>&nbsp;<span class="post-category">收录于 <a href="/myblog/categories/%E5%89%8D%E7%AB%AF/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>前端</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-16">2023-04-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3111 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" class="leancloud_visitors" data-flag-title="Promise 对象池">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#关于-arrayprototypemap">关于 Array.prototype.map</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>我正在参加「掘金·启航计划」</p>
+<h1 id="前言">前言</h1>
+<p>最近<a href="https://leetcode.cn/problemset/javascript/" target="_blank" rel="noopener noreffer ">leetcode</a>专门出了一个 JavaScript 专栏，里面是一些和 javaScript 相关的题目，基本上是问一些日常使用或经典的工具函数的内部实现。感觉挺有意思，所以就刷了一遍，其中，Promise 对象池这个题让我印象比较深刻，平时有遇到过相关场景，但没细琢磨过实现原理，原题大意是给你一个异步函数数组 functions，和一个限制数 n，要求设计一个函数，用来执行数组 functions 中的所有异步函数，且最大并行执行数量不能超过 n。</p>
+<h1 id="题目">题目</h1>
+<p>请你编写一个异步函数  <code>promisePool</code> ，它接收一个异步函数数组  <code>functions</code>  和  <strong>池限制</strong> <code>n</code>。它应该返回一个 promise 对象，当所有输入函数都执行完毕后，promise 对象就执行完毕。</p>
+<p><strong>池限制</strong>  定义是一次可以挂起的最多 promise 对象的数量。<code>promisePool</code>  应该开始执行尽可能多的函数，并在旧的 promise 执行完毕后继续执行新函数。<code>promisePool</code>  应该先执行  <code>functions[i]</code>，再执行  <code>functions[i + 1]</code>，然后执行  <code>functions[i + 2]</code>，等等。当最后一个 promise 执行完毕时，<code>promisePool</code>  也应该执行完毕。</p>
+<p>例如，如果  <code>n = 1</code> , <code>promisePool</code>  在序列中每次执行一个函数。然而，如果  <code>n = 2</code> ，它首先执行两个函数。当两个函数中的任何一个执行完毕后，再执行第三个函数(如果它是可用的)，依此类推，直到没有函数要执行为止。</p>
+<p>你可以假设所有的  <code>functions</code>  都不会被拒绝。对于  <code>promisePool</code>  来说，返回一个可以解析任何值的 promise 都是可以接受的。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：
+functions = [
+  () =&gt; new Promise(res =&gt; setTimeout(res, 300)),
+  () =&gt; new Promise(res =&gt; setTimeout(res, 400)),
+  () =&gt; new Promise(res =&gt; setTimeout(res, 200))
+]
+n = 2
+输出：[[300,400,500],500]
+解释
+传递了三个函数。它们的睡眠时间分别为 300ms、 400ms 和 200ms。
+在 t=0 时，执行前两个函数。池大小限制达到 2。
+当 t=300 时，第一个函数执行完毕后，执行第3个函数。池大小为 2。
+在 t=400 时，第二个函数执行完毕后。没有什么可执行的了。池大小为 1。
+在 t=500 时，第三个函数执行完毕后。池大小为 0，因此返回的 promise 也执行完成。
+</code></pre>
+<p><strong>示例 2：</strong></p>
+<pre><code>输入：
+functions = [
+  () =&gt; new Promise(res =&gt; setTimeout(res, 300)),
+  () =&gt; new Promise(res =&gt; setTimeout(res, 400)),
+  () =&gt; new Promise(res =&gt; setTimeout(res, 200))
+]
+n = 5
+输出：[[300,400,200],400]
+解释：
+在 t=0 时，所有3个函数都被执行。池的限制大小 5 永远不会满足。
+在 t=200 时，第三个函数执行完毕后。池大小为 2。
+在 t=300 时，第一个函数执行完毕后。池大小为 1。
+在 t=400 时，第二个函数执行完毕后。池大小为 0，因此返回的 promise 也执行完成。
+</code></pre>
+<p><strong>示例 3：</strong></p>
+<pre><code>输入：
+functions = [
+  () =&gt; new Promise(res =&gt; setTimeout(res, 300)),
+  () =&gt; new Promise(res =&gt; setTimeout(res, 400)),
+  () =&gt; new Promise(res =&gt; setTimeout(res, 200))
+]
+n = 1
+输出：[[300,700,900],900]
+解释：
+在 t=0 时，执行第一个函数。池大小为1。
+当 t=300 时，第一个函数执行完毕后，执行第二个函数。池大小为 1。
+当 t=700 时，第二个函数执行完毕后，执行第三个函数。池大小为 1。
+在 t=900 时，第三个函数执行完毕后。池大小为 0，因此返回的 Promise 也执行完成。
+</code></pre>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= functions.length &lt;= 10</code></li>
+<li><code>1 &lt;= n &lt;= 10</code></li>
+</ul>
+<h1 id="思路">思路</h1>
+<p>题目很好理解，应用场景也比较常见，像 Chrome 浏览器，在同一个域名下，不同 GET/POST 请求的并发数量是 6，当某个页面的初始请求数量过多时，Chrome 浏览器最多会请同时请求 6 个，在这 6 个请求没有得到响应之前，后面的请求会置入队列里等待发送。当任一请求完成后，后续请求队列会补上一个……直至所有请求完成。</p>
+<p>理一下思路，想要实现这样一个函数，首先应该维护一个长度为 n 的一部<code>异步函数</code>队列，进行初始化执行，并且在有<code>异步函数</code>执行完毕的时候，需要执行后续的函数。我尝试着按照自己的思路去实现，虽磕磕绊绊，但好在也实现了这个功能，不过看到那冗余的代码，让我知道这肯定不是最优解，秉承着高手在人间的想法，我果断的打开了该题的题解，虽然 JavaScript 专栏刚出不久，解题的大佬还不算多，不过我还是看到了我想要的答案。</p>
+<h1 id="题解">题解</h1>
+<blockquote>
+<p><strong>前置了解：</strong></p>
+<p><strong>Promise.all():</strong> Promise.all() 方法接收一个 promise 的 iterable 类型,（注：Array，Map，Set 都属于 ES6 的 iterable 类型）的输入，并且只返回一个<code>Promise</code>实例，他会执行所有的 promise，当所有输入的 promise 都完成的时候，返回一个<code>Promise</code>实例调用 resolve()并返回一个由所有结果组成的数组。当输入的 promise 中存在任何一个被 reject 时，就会立即抛出错误，返回一个<code>Promise</code>实例调用 reject()返回其错误信息。</p>
+<p><strong>Promise.allSettled():</strong> 和 Promise.all 类似，区别就是在某个 Promise 被 reject 时，不会中断剩余的 Promise，会在输入的所有 promise 都完成时（状态为<code>fulfilled</code> 或<code>rejected</code>），返回的 promise 才会 resolve，并返回一个对象数组， 包含所有 Promise 的状态和 promsie 结果。</p>
+<p><strong>Promise.race():</strong> Promise.race(iterable)方法返回一个 promise，一旦迭代器中的某个 promise 解决或拒绝，返回的 promise 就会解决或拒绝。</p>
+</blockquote>
+<p>由于我的题解实在拿不出手，这里 copy 了另外两个佬儿的题解。</p>
+<pre><code>/**
+ * @param {Function[]} functions
+ * @param {number} n
+ * @return {Function}
+ */
+var promisePool = async function (functions, n) {
+    // 使用 Set 存储正在执行的任务队列
+    let queue = new Set();
+    let resolved = [];
+
+    for (const task of functions) {
+        // 将正在执行的任务加入到队列中
+        const x = task().then((res) =&gt; {
+            // 任务执行完成后将结果存到 resolved 数组中
+            resolved.push(res);
+            // 完成后移出正在执行队列
+            queue.delete(x);
+        })
+        queue.add(x);
+        // 控制线程池执行最大数
+        if (queue.size &gt;= n) {
+            await Promise.race(queue);
+        }
+    }
+    // 执行完所有任务后才返回执行结果
+    await Promise.allSettled(queue);
+    return resolved;
+};
+
+/**
+ * const sleep = (t) =&gt; new Promise(res =&gt; setTimeout(res, t));
+ * promisePool([() =&gt; sleep(500), () =&gt; sleep(400)], 1)
+ *   .then(console.log) // After 900ms
+ */
+
+作者：夜风
+链接：&lt;https://leetcode.cn/problems/promise-pool/solutions/2240055/shi-yong-promiserace-he-promiseallsettle-5ip2/&gt;
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</code></pre>
+<p>看完之后不得不感叹作者思路的巧妙。维护一个执行队列 queue。使用 for 循环，依次执行 functions 数组里的<code>异步函数</code>，当正在执行的<code>异步函数</code>到达限制后，使用 await+Promise.race 阻塞 for 循环，直至某个<code>异步函数</code>执行完毕，状态变更为<code>fulfilled/rejected</code> 后，将执行完毕的函数剔除队列，此时将继续 for 循环。然后继续阻塞…直至循环完毕。</p>
+<p>最后 for 循环结束，还剩 n 个正在执行的<code>异步函数</code>，使用<code>Promise.allSettled()</code> 等待队列剩余的函数执行完毕后，把结果返回。</p>
+<h1 id="题解二">题解二</h1>
+<p>下面这个看起来就更简单了。</p>
+<pre><code>/**
+ * @param {Function[]} functions
+ * @param {number} n
+ * @return {Function}
+ */
+var promisePool = async function(functions, n) {
+    await Promise.all([...new Array(n)].map(async () =&gt; {
+        while (functions.length) {
+            await functions.shift()()
+        }
+    }))
+};
+
+/**
+ * const sleep = (t) =&gt; new Promise(res =&gt; setTimeout(res, t));
+ * promisePool([() =&gt; sleep(500), () =&gt; sleep(400)], 1)
+ *   .then(console.log) // After 900ms
+ */
+
+作者：月亮
+链接：&lt;https://leetcode.cn/problems/promise-pool/solutions/2279225/js-promiseallsi-lu-by-yue-liang-ab-8p1h/&gt;
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</code></pre>
+<p>三行代码搞定。利用 Promise.all() + map + while 进行解题。看完之后不得不说，思路确实很清奇。</p>
+<p>上一个题解是通过计数来控制并发数量，这个则是类似创建 n 个线程进行控制。初始化后先同步执行 n 个 Promise，使用 functions.shift()，每当 n 个 Promise 中有一个执行完毕后，都会继续执行下一个最新的异步函数，直至全部执行完毕。</p>
+<p>当然，这里改变了原数组，如果不想改变原数组的话，可以单独维护一个变量 i，通过闭包，用来存储即将要执行的异步函数，也能达到类似的效果。</p>
+<h2 id="关于-arrayprototypemap">关于 Array.prototype.map</h2>
+<p>先看下关于 map 方法的描述：</p>
+<img src="map.png" alt="image.png" width="500" />
+<p>callbackFn 仅在已分配值的数组索引处被调用，未被分配的数组索引，将跳过 callbakFn 的执行。而通过<code>new Array()</code>创建出的数组数组项默认是未分配的状态 <code>empty</code>，所以，如果直接进行 map，里面的回调函数是不会被执行的。需要使用<code>Array.prototype.fill()</code>填充一下默认值，或使用<code>扩展运算符</code> 进行一次浅拷贝，浅拷贝之后的数组，数组项未被分配时，会被填充为<code>undefined</code>。</p>
+<h1 id="结尾">结尾</h1>
+<p>实际需求肯定比题目要求要复杂，因此，想要在项目中使用，还需要根据项目需求，对代码进行润色，补充下边界等才能应用。</p>
+<p>end.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-04-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" data-title="Promise 对象池" data-hashtags="leedcode"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" data-hashtag="leedcode"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" data-title="Promise 对象池"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" data-title="Promise 对象池"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://tzz-v.github.io/myblog/promise-%E5%AF%B9%E8%B1%A1%E6%B1%A0/" data-title="Promise 对象池"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/myblog/tags/leedcode/">leedcode</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/myblog/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/myblog/%E8%A6%81%E6%98%AF%E5%88%9B%E5%BB%BAmrpr%E5%90%8E%E5%AE%83%E8%83%BD%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E4%B8%80%E4%BB%BD%E9%A2%84%E8%A7%88%E7%8E%AF%E5%A2%83%E5%B0%B1%E5%A5%BD%E4%BA%86/" class="prev" rel="prev" title="要是创建MR(PR)后它能自己创建一份预览环境就好了"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>要是创建MR(PR)后它能自己创建一份预览环境就好了</a>
+            <a href="/myblog/%E8%AF%BBreact%E6%96%B0%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%80%E4%BA%9B-hook-%E7%9A%84%E4%BD%BF%E7%94%A8/" class="next" rel="next" title="读react新官方文档，一些 hook 的使用">读react新官方文档，一些 hook 的使用<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/tzz-v" target="_blank">肆码难椎</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/myblog/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/myblog/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/myblog/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-CN","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"data":{"id-1":"肆码难椎","id-2":"肆码难椎"},"lightgallery":true,"search":{"highlightTag":"em","lunrIndexURL":"/myblog/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/myblog/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/myblog/js/theme.min.js"></script></body>
+</html>
